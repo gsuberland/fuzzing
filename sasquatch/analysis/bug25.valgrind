@@ -1,0 +1,40 @@
+3782-example-rootfs.sqsh
+==15886== Memcheck, a memory error detector
+==15886== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==15886== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==15886== Command: ./sasquatch -f input/3782-example-rootfs.sqsh
+==15886== 
+SquashFS version [3.1] / inode count [403] suggests a SquashFS image of the same endianess
+==15886== Warning: client switching stacks?  SP change: 0xffefffd20 --> 0xffcfffd10
+==15886==          to suppress, use: --max-stackframe=33554448 or greater
+==15886== Invalid write of size 8
+==15886==    at 0x40CB5B: read_fragment_table_3 (unsquash-3.c:46)
+==15886==    by 0x402CFA: main (unsquashfs.c:2956)
+==15886==  Address 0xffcfffd08 is on thread 1's stack
+==15886==  in frame #0, created by read_fragment_table_3 (unsquash-3.c:31)
+==15886== 
+==15886== 
+==15886== Process terminating with default action of signal 11 (SIGSEGV)
+==15886==  Access not within mapped region at address 0xFFCFFFD08
+==15886==    at 0x40CB5B: read_fragment_table_3 (unsquash-3.c:46)
+==15886==  If you believe this happened as a result of a stack
+==15886==  overflow in your program's main thread (unlikely but
+==15886==  possible), you can try to increase the size of the
+==15886==  main thread stack using the --main-stacksize= flag.
+==15886==  The main thread stack size used in this run was 8388608.
+Parallel unsquashfs: Using 1 processor
+==15886== 
+==15886== HEAP SUMMARY:
+==15886==     in use at exit: 1,529,128 bytes in 21 blocks
+==15886==   total heap usage: 21 allocs, 0 frees, 1,529,128 bytes allocated
+==15886== 
+==15886== LEAK SUMMARY:
+==15886==    definitely lost: 0 bytes in 0 blocks
+==15886==    indirectly lost: 0 bytes in 0 blocks
+==15886==      possibly lost: 1,440 bytes in 5 blocks
+==15886==    still reachable: 1,527,688 bytes in 16 blocks
+==15886==         suppressed: 0 bytes in 0 blocks
+==15886== Rerun with --leak-check=full to see details of leaked memory
+==15886== 
+==15886== For counts of detected and suppressed errors, rerun with: -v
+==15886== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

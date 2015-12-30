@@ -1,0 +1,69 @@
+4330-example-dpkg.sqsh
+==16111== Memcheck, a memory error detector
+==16111== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==16111== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==16111== Command: ./sasquatch -f input/4330-example-dpkg.sqsh
+==16111== 
+SquashFS version [4.0] / inode count [9] suggests a SquashFS image of the same endianess
+Trying to decompress using default gzip decompressor...
+Trying to decompress with lzma...
+==16111== Conditional jump or move depends on uninitialised value(s)
+==16111==    at 0x410478: lzma_standard_uncompress (lzma_wrapper.c:101)
+==16111==    by 0x40F6D0: compressor_uncompress (compressor.c:206)
+==16111==    by 0x40877E: read_block (unsquashfs.c:706)
+==16111==    by 0x40E7B2: read_fragment_table_4 (unsquash-4.c:70)
+==16111==    by 0x402CFA: main (unsquashfs.c:2956)
+==16111== 
+Trying to decompress with lzma-adaptive...
+==16111== Invalid read of size 8
+==16111==    at 0x4C2F790: memcpy@@GLIBC_2.14 (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==16111==    by 0x41B323: CInMemoryStream::Read(void*, unsigned int, unsigned int*) (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x434B95: CInBuffer::ReadBlock2() (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x41E1D1: NCompress::NLZMA::CDecoder::CodeSpec(unsigned int) (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x41E4C6: NCompress::NLZMA::CDecoder::CodeReal(ISequentialInStream*, ISequentialOutStream*, unsigned long long const*, unsigned long long const*, ICompressProgressInfo*) (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x41B6B9: NCompress::NLZMA::CDecoder::Code(ISequentialInStream*, ISequentialOutStream*, unsigned long long const*, unsigned long long const*, ICompressProgressInfo*) (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x41AFD4: lzmaspec_uncompress (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x4107E9: lzma_adaptive_uncompress (lzma_wrapper.c:298)
+==16111==    by 0x40F6D0: compressor_uncompress (compressor.c:206)
+==16111==    by 0x40877E: read_block (unsquashfs.c:706)
+==16111==    by 0x40E7B2: read_fragment_table_4 (unsquash-4.c:70)
+==16111==    by 0x402CFA: main (unsquashfs.c:2956)
+==16111==  Address 0xfff001000 is not stack'd, malloc'd or (recently) free'd
+==16111== 
+==16111== 
+==16111== Process terminating with default action of signal 11 (SIGSEGV)
+==16111==  Access not within mapped region at address 0xFFF001000
+==16111==    at 0x4C2F790: memcpy@@GLIBC_2.14 (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==16111==    by 0x41B323: CInMemoryStream::Read(void*, unsigned int, unsigned int*) (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x434B95: CInBuffer::ReadBlock2() (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x41E1D1: NCompress::NLZMA::CDecoder::CodeSpec(unsigned int) (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x41E4C6: NCompress::NLZMA::CDecoder::CodeReal(ISequentialInStream*, ISequentialOutStream*, unsigned long long const*, unsigned long long const*, ICompressProgressInfo*) (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x41B6B9: NCompress::NLZMA::CDecoder::Code(ISequentialInStream*, ISequentialOutStream*, unsigned long long const*, unsigned long long const*, ICompressProgressInfo*) (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x41AFD4: lzmaspec_uncompress (in /home/graham/squash-fuzz/sasquatch)
+==16111==    by 0x4107E9: lzma_adaptive_uncompress (lzma_wrapper.c:298)
+==16111==    by 0x40F6D0: compressor_uncompress (compressor.c:206)
+==16111==    by 0x40877E: read_block (unsquashfs.c:706)
+==16111==    by 0x40E7B2: read_fragment_table_4 (unsquash-4.c:70)
+==16111==    by 0x402CFA: main (unsquashfs.c:2956)
+==16111==  If you believe this happened as a result of a stack
+==16111==  overflow in your program's main thread (unlikely but
+==16111==  possible), you can try to increase the size of the
+==16111==  main thread stack using the --main-stacksize= flag.
+==16111==  The main thread stack size used in this run was 8388608.
+Parallel unsquashfs: Using 1 processor
+==16111== 
+==16111== HEAP SUMMARY:
+==16111==     in use at exit: 10,973,956 bytes in 30 blocks
+==16111==   total heap usage: 6,032 allocs, 6,002 frees, 9,573,973,556 bytes allocated
+==16111== 
+==16111== LEAK SUMMARY:
+==16111==    definitely lost: 0 bytes in 0 blocks
+==16111==    indirectly lost: 0 bytes in 0 blocks
+==16111==      possibly lost: 1,440 bytes in 5 blocks
+==16111==    still reachable: 10,972,516 bytes in 25 blocks
+==16111==         suppressed: 0 bytes in 0 blocks
+==16111== Rerun with --leak-check=full to see details of leaked memory
+==16111== 
+==16111== For counts of detected and suppressed errors, rerun with: -v
+==16111== Use --track-origins=yes to see where uninitialised values come from
+==16111== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
