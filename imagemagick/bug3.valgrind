@@ -1,0 +1,31 @@
+input/1028-44.ipl
+==26996== Memcheck, a memory error detector
+==26996== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==26996== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==26996== Command: convert input/1028-44.ipl /tmp/fuzz.png
+==26996== 
+==26996== Invalid write of size 4
+==26996==    at 0x4F8B395: AcquireQuantumInfo (in /usr/lib/x86_64-linux-gnu/libMagickCore.so.5.0.0)
+==26996==    by 0x964812E: ReadIPLImage (in /usr/lib/x86_64-linux-gnu/ImageMagick-6.7.7/modules-Q16/coders/ipl.so)
+==26996==    by 0x4EB5DEA: ReadImage (in /usr/lib/x86_64-linux-gnu/libMagickCore.so.5.0.0)
+==26996==    by 0x4EB6E9A: ReadImages (in /usr/lib/x86_64-linux-gnu/libMagickCore.so.5.0.0)
+==26996==    by 0x5314F8D: ConvertImageCommand (in /usr/lib/x86_64-linux-gnu/libMagickWand.so.5.0.0)
+==26996==    by 0x537E799: MagickCommandGenesis (in /usr/lib/x86_64-linux-gnu/libMagickWand.so.5.0.0)
+==26996==    by 0x400886: main (in /usr/bin/convert.im6)
+==26996==  Address 0x60 is not stack'd, malloc'd or (recently) free'd
+==26996== 
+==26996== 
+==26996== HEAP SUMMARY:
+==26996==     in use at exit: 105,160 bytes in 740 blocks
+==26996==   total heap usage: 992 allocs, 252 frees, 205,494 bytes allocated
+==26996== 
+==26996== LEAK SUMMARY:
+==26996==    definitely lost: 0 bytes in 0 blocks
+==26996==    indirectly lost: 0 bytes in 0 blocks
+==26996==      possibly lost: 0 bytes in 0 blocks
+==26996==    still reachable: 105,160 bytes in 740 blocks
+==26996==         suppressed: 0 bytes in 0 blocks
+==26996== Rerun with --leak-check=full to see details of leaked memory
+==26996== 
+==26996== For counts of detected and suppressed errors, rerun with: -v
+==26996== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
